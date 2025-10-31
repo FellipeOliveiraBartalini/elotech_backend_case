@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -33,7 +34,11 @@ public class BookModel {
     @NotBlank(message = "Data de publicacao cannot be blank")
     private LocalDateTime dataPublicacao;
 
-    @Column
-    @NotBlank(message = "Categoria cannot be blank")
-    private String categoria;
+    @ManyToMany
+    @JoinTable(
+        name = "book_categories",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<CategoryModel> categorias;
 }

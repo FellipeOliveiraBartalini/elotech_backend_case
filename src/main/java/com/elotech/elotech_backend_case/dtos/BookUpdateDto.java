@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-public class BookCreateDto {
+public class BookUpdateDto {
 
     @NotBlank(message = "Titulo cannot be blank")
     private String titulo;

@@ -1,8 +1,9 @@
 package com.elotech.elotech_backend_case.controllers;
 
 import com.elotech.elotech_backend_case.dtos.BookCreateDto;
+import com.elotech.elotech_backend_case.dtos.BookUpdateDto;
+import com.elotech.elotech_backend_case.interfaces.IBookService;
 import com.elotech.elotech_backend_case.models.BookModel;
-import com.elotech.elotech_backend_case.services.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookService bookService;
+    private IBookService bookService;
 
     @GetMapping
     public List<BookModel> getAllBooks() {
@@ -34,12 +35,12 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public BookModel updateBook(@PathVariable Long id, @Valid @RequestBody BookModel bookModel) {
-        return bookService.update(id, bookModel);
+    public BookModel updateBook(@PathVariable Long id, @Valid @RequestBody BookUpdateDto bookUpdateDto) {
+        return bookService.update(id, bookUpdateDto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUBook(@PathVariable Long id) {
+    public void deleteBook(@PathVariable Long id) {
         BookModel book = bookService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
         bookService.delete(book);
