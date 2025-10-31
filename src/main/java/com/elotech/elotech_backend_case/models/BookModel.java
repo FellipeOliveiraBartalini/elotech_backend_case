@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "books")
 @Getter
@@ -27,11 +30,15 @@ public class BookModel {
     @NotBlank(message = "ISBN cannot be blank")
     private String isbn;
 
-    @Column
+    @Column(name = "data_publicacao")
     @NotBlank(message = "Data de publicacao cannot be blank")
-    private String data_publicacao;
+    private LocalDateTime dataPublicacao;
 
-    @Column
-    @NotBlank(message = "Categoria cannot be blank")
-    private String categoria;
+    @ManyToMany
+    @JoinTable(
+        name = "book_categories",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<CategoryModel> categorias;
 }

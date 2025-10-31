@@ -20,21 +20,21 @@ public class UserModel {
     private Long id;
 
     @Column
-    @NotBlank(message = "Nome cannot be blank")
+    @NotBlank(message = "Nome não pode ser vazio")
     private String nome;
 
-    @Column
-    @Email(message = "Email should be valid")
-    @NotBlank(message = "Email cannot be blank")
+    @Column(unique = true)
+    @Email(message = "Email tem quer ser válido")
+    @NotBlank(message = "Email não pode ser vazio")
     private String email;
 
-    @Column
+    @Column(name = "data_cadastro", updatable = false)
     @CreatedDate
-    @NotBlank(message = "Data de cadastro cannot be blank")
-    private LocalDateTime data_cadastro;
+    @NotBlank(message = "Data de cadastro não pode ser vazia")
+    private LocalDateTime dataCadastro;
 
     @Column
-    @NotBlank(message = "Telefone cannot be blank")
+    @NotBlank(message = "Telefone não pode ser vazio")
     private String telefone;
 
 }
