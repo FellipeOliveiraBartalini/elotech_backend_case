@@ -34,7 +34,7 @@ public class BookService {
         bookModel.setTitulo(bookCreateDto.getTitulo());
         bookModel.setCategoria(bookCreateDto.getCategoria());
         bookModel.setIsbn(bookCreateDto.getIsbn());
-        bookModel.setData_publicacao(bookCreateDto.getData_publicacao());
+        bookModel.setDataPublicacao(bookCreateDto.getDataPublicacao());
 
         return bookRepository.save(bookModel);
     }
@@ -47,7 +47,7 @@ public class BookService {
         existingBook.setTitulo(newBookModel.getTitulo());
         existingBook.setCategoria(newBookModel.getCategoria());
         existingBook.setIsbn(newBookModel.getIsbn());
-        existingBook.setData_publicacao(newBookModel.getData_publicacao());
+        existingBook.setDataPublicacao(newBookModel.getDataPublicacao());
 
         return bookRepository.save(existingBook);
     }

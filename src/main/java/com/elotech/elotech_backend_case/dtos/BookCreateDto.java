@@ -18,7 +18,7 @@ public class BookCreateDto {
     private String isbn;
 
     @NotBlank(message = "Data de publicacao cannot be blank")
-    private LocalDateTime data_publicacao;
+    private LocalDateTime dataPublicacao;
 
     @NotBlank(message = "Categoria cannot be blank")
     private String categoria;

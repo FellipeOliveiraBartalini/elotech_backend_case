@@ -34,7 +34,7 @@ public class UserService {
         userModel.setNome(userCreateDto.getNome());
         userModel.setEmail(userCreateDto.getEmail());
         userModel.setTelefone(userCreateDto.getTelefone());
-        userModel.setData_cadastro(LocalDateTime.now());
+        userModel.setDataCadastro(LocalDateTime.now());
 
         return userRepository.save(userModel);
     }

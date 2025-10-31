@@ -29,9 +29,9 @@ public class BookModel {
     @NotBlank(message = "ISBN cannot be blank")
     private String isbn;
 
-    @Column
+    @Column(name = "data_publicacao")
     @NotBlank(message = "Data de publicacao cannot be blank")
-    private LocalDateTime data_publicacao;
+    private LocalDateTime dataPublicacao;
 
     @Column
     @NotBlank(message = "Categoria cannot be blank")
