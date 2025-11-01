@@ -81,4 +81,8 @@ public class BookService implements IBookService {
         existingCategories.addAll(updatedCategories);
         return existingCategories;
     }
+
+    public List<BookModel> findByCategoryId(Long categoryId) {
+        return bookRepository.findByCategorias_Id(categoryId);
+    }
 }
