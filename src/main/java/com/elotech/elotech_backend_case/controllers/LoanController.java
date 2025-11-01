@@ -1,6 +1,7 @@
 package com.elotech.elotech_backend_case.controllers;
 
 import com.elotech.elotech_backend_case.dtos.LoanCreateDto;
+import com.elotech.elotech_backend_case.models.BookModel;
 import com.elotech.elotech_backend_case.models.LoanModel;
 import com.elotech.elotech_backend_case.services.LoanService;
 import jakarta.validation.Valid;
@@ -49,5 +50,8 @@ public class LoanController {
         loanService.delete(id);
     }
 
-
+    @GetMapping("/recommended/{userId}")
+    public List<BookModel> getRecommendedBooks(@PathVariable Long userId) {
+        return loanService.getRecomendedBooks(userId);
+    }
 }

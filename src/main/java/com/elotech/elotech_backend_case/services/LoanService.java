@@ -95,9 +95,19 @@ public class LoanService {
 
     private boolean validateIfBookIsAvailable(Long bookId) {
         LoanModel recentLoan = loanRepository.findTopByBookIdOrderByLoanDateDesc(bookId);
-        if (recentLoan != null && recentLoan.getReturnDate() == null) {
-            return false;
-        }
-        return  true;
+        return recentLoan == null || recentLoan.getReturnDate() != null;
+    }
+
+    public List<BookModel> getRecomendedBooks(Long userId) {
+        // TODO: get loaned books by userId
+        List<LoanModel> userLoans = loanRepository.findByUserId(userId);
+
+        return userLoans.stream()
+            .map(loanedBook -> loanedBook.getBook().getCategorias().stream()
+                .map(category -> bookService.findByCategoryId(category.getId()))
+                .toList().getFirst())
+            .toList().getFirst()
+            .stream().filter(book -> userLoans.stream().noneMatch(loan -> loan.getBook().getId().equals(book.getId())))
+            .toList();
     }
 }
